@@ -2,6 +2,43 @@ a {
     color: purple;
 }
 
+body {
+    padding: 25px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.btn-purple {
+    background-color: purple;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: #a222a2;
+    color: white;
+}
+
 #timer {
-   text-align: right;
+    text-align: right;
+    font-weight: 600;
+}
+
+#quiz-intro h1 {
+    text-align: center;
+}
+
+#quiz-intro p {
+    text-align: center;
+}
+
+#quiz-question {
+    display: none;
+}
+
+#start {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
