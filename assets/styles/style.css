@@ -38,6 +38,14 @@ pre {
     color: white;
 }
 
+#correct-answer-indicator {
+    display: none;
+}
+
+#incorrect-answer-indicator {
+    display: none;
+}
+
 #timer {
     display: none;
     text-align: right;

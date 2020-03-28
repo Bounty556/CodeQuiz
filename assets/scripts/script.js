@@ -1,3 +1,5 @@
+var correctAnswerIndicator = document.getElementById('correct-answer-indicator');
+var incorrectAnswerIndicator = document.getElementById('incorrect-answer-indicator');
 var quizIntroDiv = document.getElementById('quiz-intro');
 var quizQuestionDiv = document.getElementById('quiz-question');
 
@@ -54,10 +56,20 @@ function populateQuestion(indexNum) {
             if (parseInt(target.getAttribute('data-answer')) === question.correctAnswer) {
                 // Do correct answer stuff
                 console.log('correct');
+
+                correctAnswerIndicator.style.display = 'block';
+                setTimeout(function() {
+                    correctAnswerIndicator.style.display = 'none';
+                }, 500);
             }
             else {
                 // Do incorrect answer stuff
                 console.log('incorrect');
+
+                incorrectAnswerIndicator.style.display = 'block';
+                setTimeout(function() {
+                    incorrectAnswerIndicator.style.display = 'none';
+                }, 500);
             }
             
             // Move on to the next question if possible, otherwise end game
