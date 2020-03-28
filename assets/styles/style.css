@@ -33,6 +33,7 @@ pre {
 }
 
 #timer {
+    display: none;
     text-align: right;
     font-weight: 600;
 }
