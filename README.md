@@ -8,7 +8,8 @@ Once the user has completed the quiz, or it has ended prematurely due to the tim
 
 ## Credits
 
-[Google](https://fonts.google.com/)
+[Google Fonts](https://fonts.google.com/)
+
 [Bootstrap](https://getbootstrap.com/)
 
 ## License
