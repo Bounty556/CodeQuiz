@@ -12,8 +12,11 @@ var scoreList = document.getElementById('score-list');
 var initialsInput = document.getElementById('initials');
 
 var questions = [
+    // {
+    //     descriptionHTML: ''
+    // },
     {
-        descriptionHTML: 'This is a question!<pre>can you read this? \nand this? \nwhat about this?</pre>',
+        descriptionHTML: 'What will be logged to the console in the following code? This is a question!<pre>can you read this? \nand this? \nwhat about this?</pre>',
         answers: ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
         correctAnswer: 0,
         nextQuestion: 1
@@ -172,6 +175,8 @@ function saveScore() {
 
     scoreData.push(score);
 
+    scoreData.sort(compareScores);
+
     localStorage.setItem('score-list', JSON.stringify(scoreData));
 
     // Redirect to highscore page
@@ -179,7 +184,17 @@ function saveScore() {
 }
 
 function sanitizeInput(event) {
+    // Only accept up to 3 chars - and make them all caps
     var content = event.target.value.substr(0, 3);
-
     event.target.value = content.toUpperCase();
+}
+
+function compareScores(first, second) {
+    if (first.score < second.score) {
+        return 1;
+    } else if (first.score > second.score) {
+        return -1;
+    } else {
+        return 0;
+    }
 }
