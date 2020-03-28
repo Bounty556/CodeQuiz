@@ -46,9 +46,10 @@ function populateQuestion(indexNum) {
     // Set up div for event delegation for quiz buttons
     var answersDiv = document.createElement('div');
 
-    answersDiv.addEventListener('click', function(element) {
+    answersDiv.addEventListener('click', element => {
         var target = element.target;
 
+        // Only do stuff if we click an answer button
         if (target.tagName.toLowerCase() === 'button') {
             if (parseInt(target.getAttribute('data-answer')) === question.correctAnswer) {
                 // Do correct answer stuff
@@ -59,9 +60,12 @@ function populateQuestion(indexNum) {
                 console.log('incorrect');
             }
             
-            // Move on to the next question if possible
-
-            // Otherwise go to high score screen
+            // Move on to the next question if possible, otherwise end game
+            if (question.nextQuestion !== null && questions[question.nextQuestion] !== undefined) {
+                populateQuestion(question.nextQuestion);
+            } else {
+                showEndScreen();
+            }
         }
     });
     quizQuestionDiv.children[0].appendChild(answersDiv);
@@ -75,4 +79,8 @@ function populateQuestion(indexNum) {
 
         answersDiv.appendChild(button);
     }
+}
+
+function showEndScreen() {
+    console.log('This is the end of the quiz');
 }
