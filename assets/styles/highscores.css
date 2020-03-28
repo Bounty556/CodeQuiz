@@ -1,0 +1,38 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    padding: 25px;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.buttons {
+    display: block;
+    margin: 15px auto;
+}
+
+.btn-purple {
+    background-color: purple;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: #a222a2;
+    color: white;
+}
+
+#highscores h1 {
+    text-align: center;
+}
+
+#score-list {
+    margin: 50px 25px;
+}

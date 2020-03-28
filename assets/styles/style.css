@@ -18,10 +18,6 @@ main {
     margin-top: 50px;
 }
 
-pre {
-    font-family: 'Source Code Pro', monospace;
-}
-
 .btn-answer {
     display: block;
     margin: 15px;

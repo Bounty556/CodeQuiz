@@ -23,8 +23,8 @@ var questions = [
         answers: ['answer part uno', 'answer part dos', 'answer part tres', 'answer part quatro'],
         correctAnswer: 1,
         nextQuestion: null
-    },
-]
+    }
+];
 
 startButton.addEventListener('click', startQuiz);
 
@@ -174,5 +174,5 @@ function saveScore() {
     localStorage.setItem('score-list', JSON.stringify(scoreData));
 
     // Redirect to highscore page
-    
+    window.location = 'highscores.html';
 }
