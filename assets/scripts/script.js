@@ -1,5 +1,4 @@
-var correctAnswerIndicator = document.getElementById('correct-answer-indicator');
-var incorrectAnswerIndicator = document.getElementById('incorrect-answer-indicator');
+var correctnessIndicator = document.getElementById('correctness-indicator');
 var quizIntroDiv = document.getElementById('quiz-intro');
 var quizQuestionDiv = document.getElementById('quiz-question');
 var highscoresDiv = document.getElementById('highscores');
@@ -70,19 +69,13 @@ function populateQuestion(indexNum) {
                 // Do correct answer stuff
                 // console.log('correct');
 
-                correctAnswerIndicator.style.display = 'block';
-                setTimeout(function() {
-                    correctAnswerIndicator.style.display = 'none';
-                }, 500);
+                addCorrectnessDiv('Correct!');
             }
             else {
                 // Do incorrect answer stuff
                 // console.log('incorrect');
 
-                incorrectAnswerIndicator.style.display = 'block';
-                setTimeout(function() {
-                    incorrectAnswerIndicator.style.display = 'none';
-                }, 500);
+                addCorrectnessDiv('Wrong!');
 
                 removeTime(10);
             }
@@ -113,8 +106,6 @@ function endQuiz() {
     // Stop timer
     clearInterval(timerObject);
 
-
-
     console.log('This is the end of the quiz');
 }
 
@@ -127,4 +118,14 @@ function removeTime(time) {
         timeLeft = 0;
         endQuiz();
     }
+}
+
+function addCorrectnessDiv(text) {
+    let correctnessDiv = document.createElement('div');
+    correctnessDiv.innerHTML = '<hr />' + text;
+    correctnessIndicator.appendChild(correctnessDiv);
+
+    setTimeout(function() {
+        correctnessIndicator.removeChild(correctnessDiv);
+    }, 500);
 }

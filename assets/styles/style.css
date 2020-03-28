@@ -38,15 +38,7 @@ pre {
     color: white;
 }
 
-#correct-answer-indicator {
-    display: none;
-}
-
 #highscores {
-    display: none;
-}
-
-#incorrect-answer-indicator {
     display: none;
 }
 
