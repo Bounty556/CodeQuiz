@@ -5,6 +5,7 @@ var highscoresDiv = document.getElementById('highscores');
 var timerEl = document.getElementById('timer');
 var timeLeftEl = document.getElementById('timeLeft');
 var timerObject = null;
+var userScore = document.getElementById('user-score');
 
 var questions = [
     {
@@ -105,6 +106,12 @@ function populateQuestion(indexNum) {
 function endQuiz() {
     // Stop timer
     clearInterval(timerObject);
+
+    timerEl.style.display = 'none';
+    quizQuestionDiv.style.display = 'none';
+    highscoresDiv.style.display = 'block';
+
+    userScore.textContent = timeLeftEl.textContent;
 
     console.log('This is the end of the quiz');
 }
