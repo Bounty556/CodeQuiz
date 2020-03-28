@@ -12,19 +12,28 @@ var scoreList = document.getElementById('score-list');
 var initialsInput = document.getElementById('initials');
 
 var questions = [
-    // {
-    //     descriptionHTML: ''
-    // },
     {
-        descriptionHTML: 'What will be logged to the console in the following code? This is a question!<pre>can you read this? \nand this? \nwhat about this?</pre>',
-        answers: ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
-        correctAnswer: 0,
+        descriptionHTML: 'What will be logged to the console in the following code? <pre>var myVar = 12;\n\nfunc();\n\nfunction func() {\n  var myVar = 11;\n\n  console.log(myVar);\n}</pre>',
+        answers: ['12', 'undefined', '11'],
+        correctAnswer: 2,
         nextQuestion: 1
     },
     {
-        descriptionHTML: 'Holy crap... This is another question!',
-        answers: ['answer part uno', 'answer part dos', 'answer part tres', 'answer part quatro'],
-        correctAnswer: 1,
+        descriptionHTML: 'How many times will the following loop run?<pre>for (let i = -1; i < 15; i += 2) {\n  ...\n}</pre>',
+        answers: ['16', '7', '15', '8'],
+        correctAnswer: 3,
+        nextQuestion: 2
+    },
+    {
+        descriptionHTML: 'What is the term used for the technique in the following code?<pre>function outer() {\n  var myVar=12;\n\n  function inner() {\n    var a = 3;\n    return myVar + a;\n  }\n  return inner;\n}</pre>',
+        answers: ['Closure', 'Pseudo-Coding', 'Recursion', 'Function Overriding'],
+        correctAnswer: 0,
+        nextQuestion: 3
+    },
+    {
+        descriptionHTML: "What should go in the missing piece of code?<pre>var divElement = $('#myDiv');\n\n// Grab integer value from div\nvar value = parseInt(-----);\nconsole.log(value);</pre>",
+        answers: ['divElement.textContent', 'divElement.innerHTML', 'divElement.text()', 'divElement.val()', 'divElement.text'],
+        correctAnswer: 2,
         nextQuestion: null
     }
 ];
