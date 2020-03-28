@@ -7,10 +7,10 @@
         <title>Code Quiz</title>
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Raleway:500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans:700|Raleway:500&display=swap" rel="stylesheet" />
 
         <!-- Custom -->
         <link href="assets/styles/style.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,9 @@
             <div class="row justify-content-center" id="quiz-intro">
                 <div class="col-md-8">
                     <h1>Coding Quiz</h1>
-                    <p>write intro here</p>
+                    <p>Welcome to the Javascript quiz! This quiz will test your ability to quickly comprehend and answer easy to challenging Javascript questions and problems.</p>
+                    <p>You will start with 90 seconds for this quiz, but every time you get an answer wrong, the timer will drop by 10 seconds. If the timer reaches 0, or you complete the final question of the quiz, the quiz will end, and the remaining time will be your score. Try to get the highest score you can!</p>
+                    <p>Click below to start.</p>
                     <button class="btn btn-purple" id="start">Start</button>
                 </div>
             </div>
@@ -55,13 +57,13 @@
             <!-- High Score Screen -->
             <div class="row justify-content-center" id="highscores">
                 <div class="col-md-8">
-                    <h1>Your Score: <span id='user-score'></span></h1>
+                    <h1>Your Score: <span id="user-score"></span></h1>
 
-                    <ol id='score-list'>
+                    <ol id="score-list">
                     </ol>
 
                     <div class="input-group mb-3">
-                        <input type="text" id='initials' class="form-control" placeholder="Your initials" aria-label="initlas" aria-describedby="submit-score" />
+                        <input type="text" id="initials" class="form-control" placeholder="Your initials" aria-label="initials" aria-describedby="submit-score" />
                         <div class="input-group-append">
                             <button class="btn btn-purple" type="button" id="submit-score">Submit</button>
                         </div>

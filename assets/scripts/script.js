@@ -13,7 +13,7 @@ var initialsInput = document.getElementById('initials');
 
 var questions = [
     {
-        descriptionHTML: 'This is a question!',
+        descriptionHTML: 'This is a question!<pre>can you read this? \nand this? \nwhat about this?</pre>',
         answers: ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
         correctAnswer: 0,
         nextQuestion: 1

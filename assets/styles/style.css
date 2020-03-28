@@ -11,11 +11,22 @@ body {
 }
 
 h1 {
+    margin-bottom: 30px;
+
     font-family: 'Open Sans', sans-serif;
 }
 
 main {
     margin-top: 50px;
+}
+
+pre {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 18px;
+    margin: 15px;
+    background-color: #ffffff;
+    border: 1px solid #898989;
+    padding: 5px;
 }
 
 .btn-answer {
@@ -61,7 +72,7 @@ main {
 }
 
 #quiz-question h1 {
-    margin-bottom: 30px;
+    font-size: 28px;
 }
 
 #score-list {
