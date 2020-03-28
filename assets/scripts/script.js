@@ -1,3 +1,5 @@
+var startButton = document.getElementById('start');
+var submitButton = document.getElementById('submit-score');
 var correctnessIndicator = document.getElementById('correctness-indicator');
 var quizIntroDiv = document.getElementById('quiz-intro');
 var quizQuestionDiv = document.getElementById('quiz-question');
@@ -6,6 +8,8 @@ var timerEl = document.getElementById('timer');
 var timeLeftEl = document.getElementById('timeLeft');
 var timerObject = null;
 var userScore = document.getElementById('user-score');
+var scoreList = document.getElementById('score-list');
+var initialsInput = document.getElementById('initials');
 
 var questions = [
     {
@@ -22,9 +26,9 @@ var questions = [
     },
 ]
 
-document.getElementById('start').addEventListener('click', function() {
-    startQuiz();
-});
+startButton.addEventListener('click', startQuiz);
+
+submitButton.addEventListener('click', saveScore);
 
 function startQuiz() {
     // Hide quiz intro
@@ -62,32 +66,7 @@ function populateQuestion(indexNum) {
     let answersDiv = document.createElement('div');
 
     answersDiv.addEventListener('click', element => {
-        var target = element.target;
-
-        // Only do stuff if we click an answer button
-        if (target.tagName.toLowerCase() === 'button') {
-            if (parseInt(target.getAttribute('data-answer')) === question.correctAnswer) {
-                // Do correct answer stuff
-                // console.log('correct');
-
-                addCorrectnessDiv('Correct!');
-            }
-            else {
-                // Do incorrect answer stuff
-                // console.log('incorrect');
-
-                addCorrectnessDiv('Wrong!');
-
-                removeTime(10);
-            }
-            
-            // Move on to the next question if possible, otherwise end game
-            if (question.nextQuestion !== null && questions[question.nextQuestion] !== undefined) {
-                populateQuestion(question.nextQuestion);
-            } else {
-                endQuiz();
-            }
-        }
+        answerButtonBehavior(indexNum, element);
     });
 
     quizQuestionDiv.children[0].appendChild(answersDiv);
@@ -103,17 +82,57 @@ function populateQuestion(indexNum) {
     }
 }
 
+function answerButtonBehavior(indexNum, element) {
+    let question = questions[indexNum];
+    var target = element.target;
+
+    // Only do stuff if we click an answer button
+    if (target.tagName.toLowerCase() === 'button') {
+        if (parseInt(target.getAttribute('data-answer')) === question.correctAnswer) {
+            // Do correct answer stuff
+            // console.log('correct');
+
+            addCorrectnessDiv('Correct!');
+        }
+        else {
+            // Do incorrect answer stuff
+            // console.log('incorrect');
+
+            addCorrectnessDiv('Wrong!');
+
+            removeTime(10);
+        }
+        
+        // Move on to the next question if possible, otherwise end game
+        if (question.nextQuestion !== null && questions[question.nextQuestion] !== undefined) {
+            populateQuestion(question.nextQuestion);
+        } else {
+            endQuiz();
+        }
+    }
+}
+
 function endQuiz() {
     // Stop timer
     clearInterval(timerObject);
 
     timerEl.style.display = 'none';
     quizQuestionDiv.style.display = 'none';
+    
     highscoresDiv.style.display = 'block';
-
     userScore.textContent = timeLeftEl.textContent;
+    scoreList.innerHTML = '';
 
-    console.log('This is the end of the quiz');
+    // Populate score list
+    let scoreData = JSON.parse(localStorage.getItem('score-list') || null);
+
+    if (scoreData != null) {
+        scoreData.forEach(element => {
+            let listItem = document.createElement('li');
+            listItem.textContent = element.initials + ' - ' + element.score;
+            scoreList.appendChild(listItem);
+        });
+    }
 }
 
 function removeTime(time) {
@@ -135,4 +154,25 @@ function addCorrectnessDiv(text) {
     setTimeout(function() {
         correctnessIndicator.removeChild(correctnessDiv);
     }, 500);
+}
+
+function saveScore() {
+    let scoreData = JSON.parse(localStorage.getItem('score-list') || null);
+
+    // Variable must be an array
+    if (scoreData == null) {
+        scoreData = [];
+    }
+
+    let score = {
+        initials: initialsInput.value,
+        score: parseInt(userScore.textContent)
+    };
+
+    scoreData.push(score);
+
+    localStorage.setItem('score-list', JSON.stringify(scoreData));
+
+    // Redirect to highscore page
+    
 }
