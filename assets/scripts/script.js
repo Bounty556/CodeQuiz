@@ -2,6 +2,9 @@ var correctAnswerIndicator = document.getElementById('correct-answer-indicator')
 var incorrectAnswerIndicator = document.getElementById('incorrect-answer-indicator');
 var quizIntroDiv = document.getElementById('quiz-intro');
 var quizQuestionDiv = document.getElementById('quiz-question');
+var timerEl = document.getElementById('timer');
+var timeLeftEl = document.getElementById('timeLeft');
+var timerObject = null;
 
 var questions = [
     {
@@ -26,6 +29,15 @@ function startQuiz() {
     // Hide quiz intro
     quizIntroDiv.style.display = 'none';
 
+    // Unhide timer
+    timeLeftEl.textContent = '90';
+    timerEl.style.display = 'block';
+
+    // Start timer
+    timerObject = setInterval(function() {
+        removeTime(1);
+    }, 1000);
+
     // Add first question to quiz question div
     populateQuestion(0);
 
@@ -34,19 +46,19 @@ function startQuiz() {
 }
 
 function populateQuestion(indexNum) {
-    var question = questions[indexNum];
+    let question = questions[indexNum];
 
     // Clear last question
     quizQuestionDiv.children[0].innerHTML = '';
 
     // Populate question description
-    var headerElement = document.createElement('h1');
+    let headerElement = document.createElement('h1');
     headerElement.innerHTML =  question.descriptionHTML;
 
     quizQuestionDiv.children[0].appendChild(headerElement);
 
-    // Set up div for event delegation for quiz buttons
-    var answersDiv = document.createElement('div');
+    // Set up div for event delegation to quiz buttons
+    let answersDiv = document.createElement('div');
 
     answersDiv.addEventListener('click', element => {
         var target = element.target;
@@ -55,7 +67,7 @@ function populateQuestion(indexNum) {
         if (target.tagName.toLowerCase() === 'button') {
             if (parseInt(target.getAttribute('data-answer')) === question.correctAnswer) {
                 // Do correct answer stuff
-                console.log('correct');
+                // console.log('correct');
 
                 correctAnswerIndicator.style.display = 'block';
                 setTimeout(function() {
@@ -64,27 +76,30 @@ function populateQuestion(indexNum) {
             }
             else {
                 // Do incorrect answer stuff
-                console.log('incorrect');
+                // console.log('incorrect');
 
                 incorrectAnswerIndicator.style.display = 'block';
                 setTimeout(function() {
                     incorrectAnswerIndicator.style.display = 'none';
                 }, 500);
+
+                removeTime(10);
             }
             
             // Move on to the next question if possible, otherwise end game
             if (question.nextQuestion !== null && questions[question.nextQuestion] !== undefined) {
                 populateQuestion(question.nextQuestion);
             } else {
-                showEndScreen();
+                endQuiz();
             }
         }
     });
+
     quizQuestionDiv.children[0].appendChild(answersDiv);
 
     // Add answer buttons
-    for (var i = 0; i < question.answers.length; i++) {
-        var button = document.createElement('button');
+    for (let i = 0; i < question.answers.length; i++) {
+        let button = document.createElement('button');
         button.className = 'btn btn-purple btn-answer';
         button.setAttribute('data-answer', '' + i);
         button.textContent = '' + (i + 1) + ': ' + question.answers[i];
@@ -93,6 +108,21 @@ function populateQuestion(indexNum) {
     }
 }
 
-function showEndScreen() {
+function endQuiz() {
+    // Stop timer
+    clearInterval(timerObject);
+
+
     console.log('This is the end of the quiz');
+}
+
+function removeTime(time) {
+    let timeLeft = parseInt(timeLeftEl.textContent);
+    timeLeft -= time;
+    timeLeftEl.textContent = '' + timeLeft;
+
+    if (timeLeft <= 0) {
+        timeLeft = 0;
+        endQuiz();
+    }
 }
