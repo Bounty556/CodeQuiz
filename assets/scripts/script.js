@@ -2,6 +2,7 @@ var correctAnswerIndicator = document.getElementById('correct-answer-indicator')
 var incorrectAnswerIndicator = document.getElementById('incorrect-answer-indicator');
 var quizIntroDiv = document.getElementById('quiz-intro');
 var quizQuestionDiv = document.getElementById('quiz-question');
+var highscoresDiv = document.getElementById('highscores');
 var timerEl = document.getElementById('timer');
 var timeLeftEl = document.getElementById('timeLeft');
 var timerObject = null;
@@ -111,6 +112,7 @@ function populateQuestion(indexNum) {
 function endQuiz() {
     // Stop timer
     clearInterval(timerObject);
+
 
 
     console.log('This is the end of the quiz');

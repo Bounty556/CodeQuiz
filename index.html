@@ -45,17 +45,36 @@
 
                 <!-- Question content -->
                 <div class="col-md-8">
-
                 </div>
 
                 <!-- Answer indicators -->
                 <div class="col-md-8" id="incorrect-answer-indicator">
-                    <hr>
+                    <hr />
                     Wrong!
                 </div>
                 <div class="col-md-8" id="correct-answer-indicator">
-                    <hr>
+                    <hr />
                     Correct!
+                </div>
+            </div>
+
+            <!-- High Score Screen -->
+            <div class="row justify-content-center" id="highscores">
+                <div class="col-md-8">
+                    <h1>Your Score: </h1>
+
+                    <ol id='score-list'>
+                        <li>
+                            test item
+                        </li>
+                    </ol>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Your initials" aria-label="initlas" aria-describedby="submit-score" />
+                        <div class="input-group-append">
+                            <button class="btn btn-purple" type="button" id="submit-score">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
