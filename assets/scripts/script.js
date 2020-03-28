@@ -27,8 +27,9 @@ var questions = [
 ];
 
 startButton.addEventListener('click', startQuiz);
-
 submitButton.addEventListener('click', saveScore);
+initialsInput.addEventListener('keyup', sanitizeInput);
+initialsInput.addEventListener('change', sanitizeInput);
 
 function startQuiz() {
     // Hide quiz intro
@@ -175,4 +176,10 @@ function saveScore() {
 
     // Redirect to highscore page
     window.location = 'highscores.html';
+}
+
+function sanitizeInput(event) {
+    var content = event.target.value.substr(0, 3);
+
+    event.target.value = content.toUpperCase();
 }
